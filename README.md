@@ -25,6 +25,7 @@ filetree [dirPath] [options]
 | `--level <depth>`     | `-L`  | Descend only `<depth>` levels in the directory tree.                      | `Infinity`                |
 | `--output <filepath>` | `-o`  | Write output to a file in Markdown format.                                | Output to console         |
 | `--exclude <dirs>`    | `-e`  | Comma-separated list of directory names to exclude.                       | `node_modules,.git`       |
+| `--icons`               | `-i`    | Display icons for files and directories.                                   | Off                       |
 | `--version`           |       | Display the version number.                                              |                           |
 | `--help`              |       | Display help for the command.                                            |                           |
 
@@ -58,6 +59,12 @@ filetree [dirPath] [options]
 
     ```bash
     filetree -o tree.md
+    ```
+
+6.  **Display the tree structure with icons:**
+
+    ```bash
+    filetree -i
     ```
 
 ## License
