@@ -1,9 +1,13 @@
 {
-  "name": "filetree",
+  "name": "@telosh/filetree",
   "version": "0.0.1",
-  "main": "tree-cli.js",
+  "main": "dist/tree-cli.js",
+  "types": "dist/tree-cli.d.ts",
+  "bin": {
+    "filetree": "dist/tree-cli.js"
+  },
   "scripts": {
-    "start": "node tree-cli.js",
+    "start": "node dist/tree-cli.js",
     "build": "tsc",
     "dev": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,9 +19,25 @@
     "file",
     "directory"
   ],
-  "author": "",
+  "author": "telosh <terumi.contact.web@gmail.com>",
   "license": "MIT",
-  "description": "指定されたディレクトリー配下のファイルツリーを表示するコマンドラインツール",
+  "description": "A command-line tool to display the file tree of a specified directory.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/telosh/fileTree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/telosh/fileTree/issues"
+  },
+  "homepage": "https://github.com/telosh/fileTree#readme",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "commander": "^13.1.0"
   },
