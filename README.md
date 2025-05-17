@@ -26,6 +26,10 @@ filetree [dirPath] [options]
 | `--output <filepath>` | `-o`  | Write output to a file in Markdown format.                                | Output to console         |
 | `--exclude <dirs>`    | `-e`  | Comma-separated list of directory names to exclude.                       | `node_modules,.git`       |
 | `--icons`               | `-i`    | Display icons for files and directories.                                   | Off                       |
+| `--metadata`            | `-m`  | Display file metadata (size, last modified date).                        | Off                       |
+| `--size-only`         |       | Display only file size in metadata (requires `--metadata`).              | Off                       |
+| `--size-unit <unit>`  |       | Specify size unit for metadata (B, KB, MB, GB).                            | `B`                       |
+| `--use-gitignore`     |       | Automatically exclude files and directories found in `.gitignore`.         | Off                       |
 | `--version`           |       | Display the version number.                                              |                           |
 | `--help`              |       | Display help for the command.                                            |                           |
 
@@ -65,6 +69,24 @@ filetree [dirPath] [options]
 
     ```bash
     filetree -i
+    ```
+
+7.  **Display the tree structure with metadata (size and last modified date):**
+
+    ```bash
+    filetree -m
+    ```
+
+8.  **Display the tree structure with only file sizes in KB:**
+
+    ```bash
+    filetree -m --size-only --size-unit KB
+    ```
+
+9.  **Display the tree structure, excluding files and directories from `.gitignore`:**
+
+    ```bash
+    filetree --use-gitignore
     ```
 
 ## License
