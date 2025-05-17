@@ -1,0 +1,29 @@
+{
+  "name": "filetree",
+  "version": "0.0.1",
+  "main": "tree-cli.js",
+  "scripts": {
+    "start": "node tree-cli.js",
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "filetree",
+    "tree",
+    "cli",
+    "file",
+    "directory"
+  ],
+  "author": "",
+  "license": "MIT",
+  "description": "指定されたディレクトリー配下のファイルツリーを表示するコマンドラインツール",
+  "dependencies": {
+    "commander": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.12.0",
+    "@types/node": "^22.15.18",
+    "typescript": "^5.8.3"
+  }
+}
