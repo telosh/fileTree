@@ -1,6 +1,6 @@
 {
   "name": "@telosh/filetree",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "dist/tree-cli.js",
   "types": "dist/tree-cli.d.ts",
   "bin": {
@@ -36,7 +36,7 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "commander": "^13.1.0"

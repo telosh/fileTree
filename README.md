@@ -1,102 +1,65 @@
-# ファイルツリー表示CLIツール
+# @telosh/filetree
 
-このツールは、指定されたディレクトリのツリー構造をコマンドラインまたはMarkdownファイルに出力します。
+A command-line tool to display the file tree of a specified directory.
 
-## 機能
+## Installation
 
--   指定されたディレクトリのツリー構造を表示します。
--   表示する階層の深さを指定できます。
--   出力をMarkdownファイルに保存できます。
-
-## インストールと実行
-
-1.  **依存関係のインストール:**
-
-    ```bash
-    npm install
-    ```
-
-2.  **TypeScriptのコンパイル:**
-
-    ```bash
-    npm run build
-    ```
-
-3.  **実行:**
-
-    ```bash
-    node dist/tree-cli.js [オプション] [ディレクトリパス]
-    ```
-
-    または、`npm link` を使用してグローバルコマンドとして登録することも可能です。
-
-    ```bash
-    npm link
-    tree-cli [オプション] [ディレクトリパス]
-    ```
-
-## 使用方法
-
-```
-tree-cli [オプション] [dirPath]
-```
-
-### 引数
-
--   `dirPath` (オプション): ツリー構造を表示するディレクトリのパス。指定しない場合はカレントディレクトリ (`.`) になります。
-
-### オプション
-
--   `-V, --version`: バージョン情報を表示します。
--   `-L, --level <depth>`: ディレクトリツリーの表示階層の深さを指定します。`<depth>` は非負の整数である必要があります。
--   `-o, --output <filepath>`: 出力を指定されたファイルパスにMarkdown形式で書き出します。
--   `-h, --help`: ヘルプメッセージを表示します。
-
-## 使用例
-
-1.  **カレントディレクトリのツリー構造を表示:**
-
-    ```bash
-    tree-cli
-    ```
-
-2.  **指定したディレクトリ (`src`) のツリー構造を表示:**
-
-    ```bash
-    tree-cli src
-    ```
-
-3.  **階層を2レベルに制限して表示:**
-
-    ```bash
-    tree-cli -L 2
-    ```
-
-4.  **結果を `output.md` ファイルに保存:**
-
-    ```bash
-    tree-cli -o output.md
-    ```
-
-5.  **`src` ディレクトリのツリーを最大1階層まで `src_tree.md` に出力:**
-    ```bash
-    tree-cli src -L 1 -o src_tree.md
-    ```
-
-## 開発
-
-ソースコードは `src` ディレクトリにあります。主なロジックは `src/tree-cli.ts` に記述されています。
-
-### ビルド
+Install the package globally using npm:
 
 ```bash
-npm run build
+npm install -g @telosh/filetree
 ```
 
-### 実行 (開発時)
-
-TypeScriptファイルを直接実行する場合 (ts-node が必要):
+## Usage
 
 ```bash
-ts-node src/tree-cli.ts [オプション] [ディレクトリパス]
-``` 
+filetree [dirPath] [options]
+```
+
+- `dirPath`: The directory path to display the tree structure for. Defaults to the current directory (`.`).
+
+## Options
+
+| Option                | Alias | Description                                                              | Default                   |
+|-----------------------|-------|--------------------------------------------------------------------------|---------------------------|
+| `--level <depth>`     | `-L`  | Descend only `<depth>` levels in the directory tree.                      | `Infinity`                |
+| `--output <filepath>` | `-o`  | Write output to a file in Markdown format.                                | Output to console         |
+| `--exclude <dirs>`    | `-e`  | Comma-separated list of directory names to exclude.                       | `node_modules,.git`       |
+| `--version`           |       | Display the version number.                                              |                           |
+| `--help`              |       | Display help for the command.                                            |                           |
+
+## Examples
+
+1.  **Display the tree structure of the current directory:**
+
+    ```bash
+    filetree
+    ```
+
+2.  **Display the tree structure of a specific directory (e.g., `src`):**
+
+    ```bash
+    filetree src
+    ```
+
+3.  **Display the tree structure up to 2 levels deep:**
+
+    ```bash
+    filetree -L 2
+    ```
+
+4.  **Exclude `node_modules` and `dist` directories:**
+
+    ```bash
+    filetree -e node_modules,dist
+    ```
+
+5.  **Save the output to a Markdown file (e.g., `tree.md`):**
+
+    ```bash
+    filetree -o tree.md
+    ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
