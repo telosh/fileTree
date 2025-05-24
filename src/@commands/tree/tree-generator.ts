@@ -4,6 +4,18 @@ import { TreeOptions } from './types';
 import { getFileIcon } from './icons';
 import { formatSize } from './formatters';
 
+export class TreeGenerator {
+  private options: TreeOptions;
+
+  constructor(options: TreeOptions) {
+    this.options = options;
+  }
+
+  generate(dirPath: string): string {
+    return generateTree(dirPath, '', true, 0, this.options.level, this.options);
+  }
+}
+
 function processEntry(
   entryName: string,
   entryPath: string,
@@ -29,13 +41,13 @@ function processEntry(
     return `${prefix}[Error stating: ${entryName} - ${errorMessage}]\n`;
   }
 
-  const icon = getFileIcon(entryName, isDirectory, options.showIcons);
+  const icon = getFileIcon(entryName, isDirectory, options.icons);
   let metadataInfo = '';
-  if ((options.showMetadata || options.showSizeOnly) && stats) {
-    const size = formatSize(stats.size, options.sizeDisplayUnit);
-    if (options.showSizeOnly) {
+  if ((options.metadata || options.sizeOnly) && stats) {
+    const size = formatSize(stats.size, options.sizeUnit);
+    if (options.sizeOnly) {
       metadataInfo = ` (Size: ${size})`;
-    } else if (options.showMetadata) {
+    } else if (options.metadata) {
       const modified = stats.mtime.toLocaleDateString();
       metadataInfo = ` (Size: ${size}, Modified: ${modified})`;
     }
@@ -70,11 +82,7 @@ export function generateTree(
 
   let output = '';
 
-  let filteredFiles = options.showHidden
-    ? filesInDir
-    : filesInDir.filter(file => !file.startsWith('.'));
-
-  filteredFiles = filteredFiles.filter(file => !options.exclude.includes(file));
+  let filteredFiles = filesInDir.filter(file => !options.exclude.includes(file));
 
   filteredFiles.forEach((file, index) => {
     const filePath = path.join(dirPath, file);

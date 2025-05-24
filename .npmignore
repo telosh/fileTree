@@ -1,0 +1,37 @@
+# Source files
+src/
+__tests__/
+*.ts
+*.tsx
+
+# Development files
+.git/
+.github/
+.vscode/
+*.md
+!README.md
+!LICENSE
+!CHANGELOG.md
+!API.md
+!TROUBLESHOOTING.md
+
+# Configuration files
+.eslintrc.js
+.prettierrc
+jest.config.js
+tsconfig.json
+
+# Test files
+coverage/
+*.test.ts
+*.spec.ts
+
+# Build files
+dist/
+node_modules/
+
+# IDE files
+.idea/
+*.swp
+*.swo
+.DS_Store 

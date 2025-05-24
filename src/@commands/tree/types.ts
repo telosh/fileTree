@@ -12,11 +12,11 @@ export interface ProgramOptions extends OptionValues {
 }
 
 export interface TreeOptions {
-  showHidden?: boolean;
+  level: number;
   exclude: string[];
-  showIcons: boolean;
-  showMetadata: boolean;
-  showSizeOnly: boolean;
-  sizeDisplayUnit: string;
-  applyGitignore: boolean;
+  icons: boolean;
+  metadata: boolean;
+  sizeOnly: boolean;
+  sizeUnit: string;
+  useGitignore: boolean;
 } 

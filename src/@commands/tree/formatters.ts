@@ -1,6 +1,6 @@
 export function formatSize(bytes: number, unit: string): string {
   if (unit === 'B') {
-    return `${bytes}B`;
+    return `${bytes} B`;
   }
   const units = ['B', 'KB', 'MB', 'GB'];
   let i = 0;
@@ -12,14 +12,29 @@ export function formatSize(bytes: number, unit: string): string {
   }
   
   if (units[i] === unit || i === units.indexOf(unit)) {
-    return `${size.toFixed(2)}${units[i]}`;
+    return `${stripTrailingZeros(size)} ${units[i]}`;
   }
   
   const targetIndex = units.indexOf(unit);
   if (targetIndex !== -1) {
     size = bytes / Math.pow(1024, targetIndex);
-    return `${size.toFixed(2)}${unit}`;
+    return `${stripTrailingZeros(size)} ${unit}`;
   }
 
-  return `${bytes}B`;
+  return `${bytes} B`;
+}
+
+function stripTrailingZeros(num: number): string {
+  return num % 1 === 0 ? num.toString() : num.toFixed(2).replace(/\.00$/, '');
+}
+
+export function formatDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 } 
