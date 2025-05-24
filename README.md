@@ -2,6 +2,20 @@
 
 A command-line tool to display the file tree of a specified directory.
 
+[![npm version](https://badge.fury.io/js/%40telosh%2Ffiletree.svg)](https://badge.fury.io/js/%40telosh%2Ffiletree)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Features
+
+- Display directory structure in a tree format
+- Customizable depth level
+- File and directory icons support
+- File metadata display (size, last modified date)
+- Gitignore integration
+- Markdown output support
+- Customizable exclusions
+- Size unit conversion
+
 ## Installation
 
 Install the package globally using npm:
@@ -88,6 +102,54 @@ filetree [dirPath] [options]
     ```bash
     filetree --use-gitignore
     ```
+
+## Development
+
+### Prerequisites
+
+- Node.js >= 18.0.0
+- npm
+
+### Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/telosh/fileTree.git
+cd fileTree
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Build the project:
+```bash
+npm run build
+```
+
+### Testing
+
+Run tests:
+```bash
+npm test
+```
+
+### Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Version History
+
+- 1.0.0
+  - Initial stable release
+  - Complete feature set
+  - Improved error handling
+  - Full documentation
 
 ## License
 

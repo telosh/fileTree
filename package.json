@@ -1,6 +1,6 @@
 {
   "name": "@telosh/filetree",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "main": "dist/tree-cli.js",
   "types": "dist/tree-cli.d.ts",
   "bin": {
