@@ -1,6 +1,7 @@
 import { TreeCommand } from '../@commands/cli';
 import * as fs from 'fs';
 import { ErrorHandler } from '../@commands/error-handler';
+import { ProgramOptions } from '../@commands/types';
 
 jest.mock('fs');
 jest.mock('../@commands/error-handler');
@@ -44,7 +45,7 @@ describe('TreeCommand', () => {
 
   describe('convertOptions', () => {
     it('should convert program options to tree options correctly', () => {
-      const programOptions = {
+      const programOptions: ProgramOptions = {
         level: '2',
         output: 'output.md',
         exclude: 'node_modules,dist',
@@ -55,7 +56,7 @@ describe('TreeCommand', () => {
         useGitignore: true
       };
 
-      const result = (treeCommand as any).convertOptions(programOptions);
+      const result = (treeCommand as unknown as { convertOptions: (options: ProgramOptions) => unknown }).convertOptions(programOptions);
 
       expect(result).toEqual({
         exclude: ['node_modules', 'dist'],
@@ -69,20 +70,20 @@ describe('TreeCommand', () => {
     });
 
     it('should handle invalid level value', () => {
-      const programOptions = {
+      const programOptions: ProgramOptions = {
         level: '-1'
       };
 
-      expect(() => (treeCommand as any).convertOptions(programOptions))
+      expect(() => (treeCommand as unknown as { convertOptions: (options: ProgramOptions) => unknown }).convertOptions(programOptions))
         .toThrow('Invalid level value. Level must be a non-negative integer.');
     });
 
     it('should handle invalid size unit', () => {
-      const programOptions = {
+      const programOptions: ProgramOptions = {
         sizeUnit: 'INVALID'
       };
 
-      expect(() => (treeCommand as any).convertOptions(programOptions))
+      expect(() => (treeCommand as unknown as { convertOptions: (options: ProgramOptions) => unknown }).convertOptions(programOptions))
         .toThrow('Invalid size unit. Choose from B, KB, MB, GB.');
     });
   });
@@ -90,7 +91,7 @@ describe('TreeCommand', () => {
   describe('parse', () => {
     it('should handle parsing errors', () => {
       const error = new Error('Parse error');
-      (treeCommand as any).program.parse = jest.fn().mockImplementation(() => {
+      (treeCommand as unknown as { program: { parse: (argv: string[]) => void } }).program.parse = jest.fn().mockImplementation(() => {
         throw error;
       });
 
@@ -98,8 +99,7 @@ describe('TreeCommand', () => {
 
       expect(mockErrorHandler.handleError).toHaveBeenCalledWith(
         error,
-        '.',
-        undefined
+        '.'
       );
     });
   });

@@ -89,11 +89,11 @@ export class TreeCommand {
       } else {
         console.log(treeOutput);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
-        this.errorHandler.handleError(error, targetDirectory, outputFile);
+        this.errorHandler.handleError(error, targetDirectory);
       } else {
-        this.errorHandler.handleError(new Error(String(error)), targetDirectory, outputFile);
+        this.errorHandler.handleError(new Error(String(error)), targetDirectory);
       }
     }
   }
@@ -111,19 +111,20 @@ export class TreeCommand {
         );
         options.exclude = [...new Set([...options.exclude, ...cleanedPatterns])];
       }
-    } catch (error: any) {
-      console.warn(`Warning: Could not read or parse .gitignore file at ${gitignorePath}: ${error.message}`);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.warn(`Warning: Could not read or parse .gitignore file at ${gitignorePath}: ${errorMessage}`);
     }
   }
 
   public parse(argv: string[]): void {
     try {
       this.program.parse(argv);
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
-        this.errorHandler.handleError(error, '.', undefined);
+        this.errorHandler.handleError(error, '.');
       } else {
-        this.errorHandler.handleError(new Error(String(error)), '.', undefined);
+        this.errorHandler.handleError(new Error(String(error)), '.');
       }
     }
   }

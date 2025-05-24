@@ -43,7 +43,7 @@ export class TreeGenerator {
     }
 
     let output = '';
-    let filteredFiles = filesInDir.filter(file => !this.options.exclude.includes(file));
+    const filteredFiles = filesInDir.filter(file => !this.options.exclude.includes(file));
 
     filteredFiles.forEach((file, index) => {
       const filePath = path.join(dirPath, file);

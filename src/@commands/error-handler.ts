@@ -1,5 +1,5 @@
 export class ErrorHandler {
-  handleError(error: Error, targetDirectory: string, outputFile?: string): void {
+  handleError(error: Error, targetDirectory: string): void {
     let errorMessage: string;
     
     if (error.message.includes('ENOENT')) {
@@ -21,7 +21,7 @@ export class ErrorHandler {
   }
 }
 
-export function handleError(error: Error, targetDirectory: string, outputFile?: string): void {
+export function handleError(error: Error, targetDirectory: string): void {
   const handler = new ErrorHandler();
-  handler.handleError(error, targetDirectory, outputFile);
+  handler.handleError(error, targetDirectory);
 } 
