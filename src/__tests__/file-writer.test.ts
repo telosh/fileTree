@@ -1,4 +1,4 @@
-import { FileWriter } from '../@commands/tree/file-writer';
+import { FileWriter } from '../@commands/file-writer';
 import * as fs from 'fs';
 
 jest.mock('fs');
@@ -16,7 +16,7 @@ describe('FileWriter', () => {
       const content = 'test content';
       const filePath = 'test.md';
 
-      fileWriter.writeToFile(content, filePath);
+      fileWriter.writeToFile(filePath, content);
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(filePath, content, 'utf8');
     });
@@ -30,7 +30,7 @@ describe('FileWriter', () => {
         throw error;
       });
 
-      expect(() => fileWriter.writeToFile(content, filePath)).toThrow(error);
+      expect(() => fileWriter.writeToFile(filePath, content)).toThrow(error);
     });
   });
 }); 

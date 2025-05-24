@@ -1,4 +1,4 @@
-import { getFileIcon } from '../@commands/tree/icons';
+import { getFileIcon } from '../@commands/icons';
 
 describe('Icons', () => {
   function toCodePoints(str: string) {
